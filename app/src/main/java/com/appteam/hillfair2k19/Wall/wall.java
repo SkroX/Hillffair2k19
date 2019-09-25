@@ -1,0 +1,82 @@
+package com.appteam.hillfair2k19.Wall;
+
+/**
+ * Coded by ThisIsNSH on 9/20/2018.
+ */
+
+public class wall {
+
+    String name;
+    String profile;
+    String image;
+    String likes;
+    String share;
+    String desc;
+    boolean liked;
+
+    public wall(String name, String desc, String profile, String image, String likes, String share, boolean liked) {
+        this.name = name;
+        this.desc = desc;
+        this.liked = liked;
+        this.profile = profile;
+        this.image = image;
+        this.likes = likes;
+        this.share = share;
+    }
+
+    public boolean getLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String likes) {
+        this.likes = likes;
+    }
+
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
+    }
+}
