@@ -6,62 +6,23 @@ package com.appteam.hillfair2k19.Wall;
 
 public class wall {
 
-    String name;
-    String profile;
-    String image;
+    String image_url;
     String likes;
-    String share;
-    String desc;
-    boolean liked;
+    Integer liked;
 
-    public wall(String name, String desc, String profile, String image, String likes, String share, boolean liked) {
-        this.name = name;
-        this.desc = desc;
+
+    public wall(String image_url, String likes , Integer liked) {
+        this.image_url = image_url;
         this.liked = liked;
-        this.profile = profile;
-        this.image = image;
         this.likes = likes;
-        this.share = share;
     }
 
-    public boolean getLiked() {
-        return liked;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setLiked(boolean liked) {
-        this.liked = liked;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getLikes() {
@@ -72,11 +33,11 @@ public class wall {
         this.likes = likes;
     }
 
-    public String getShare() {
-        return share;
+    public Integer getLiked() {
+        return liked;
     }
 
-    public void setShare(String share) {
-        this.share = share;
+    public void setLiked(Integer liked) {
+        this.liked = liked;
     }
 }

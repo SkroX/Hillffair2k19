@@ -63,44 +63,39 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         wall = wallList.get(position);
-        image_id = wall.getShare();
-        user_id = wall.getDesc();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
         roll = prefs.getString("roll number", "gsb");
-        holder.like_count.setText(likesArray.get(position) + " Likes");
+        Picasso.get().load(wallList.get(position).getImage_url()).into(holder.image);
+//        holder.like_count.setText(likesArray.get(position) + " Likes");
 //        getlike2(holder);
-        holder.desc.setText(wall.getDesc());
-        holder.title.setText(wall.getName());
 
-        if (likedArray.get(position)) {
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
-            valueAnimator.setDuration(1000);
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    holder.like.setProgress(animation.getAnimatedFraction());
-                }
-            });
-            valueAnimator.start();
-        }
+//        if (likedArray.get(position)) {
+//            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+//            valueAnimator.setDuration(1000);
+//            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                @Override
+//                public void onAnimationUpdate(ValueAnimator animation) {
+//                    holder.like.setProgress(animation.getAnimatedFraction());
+//                }
+//            });
+//            valueAnimator.start();
+//        }
 
-        Picasso.get().load(wall.getProfile()).resize(80, 80).centerCrop().into(holder.profile);
-        Picasso.get().load(wall.getImage()).resize(300, 300).centerCrop().into(holder.image);
-        holder.like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!likedArray.get(position)) {
-                    post(holder, position);
-                    likedArray.set(position, true);
-                    holder.like.setEnabled(false);
-                } else {
-                    likedArray.set(position, false);
-                    remove(holder, position);
-                    holder.like.setEnabled(false);
-                }
-            }
-
-        });
+//        holder.like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (!likedArray.get(position)) {
+//                    post(holder, position);
+//                    likedArray.set(position, true);
+//                    holder.like.setEnabled(false);
+//                } else {
+//                    likedArray.set(position, false);
+//                    remove(holder, position);
+//                    holder.like.setEnabled(false);
+//                }
+//            }
+//
+//        });
     }
 
     @Override

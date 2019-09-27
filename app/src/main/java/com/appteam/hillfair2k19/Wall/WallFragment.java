@@ -40,6 +40,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     public static ArrayList<String> likesArray = new ArrayList<>();
     public static ArrayList<Boolean> likedArray = new ArrayList<>();
     String user_id;
+    String firebase_id;
     ProgressBar loadwall;
     int set = 0;
     SwipeRefreshLayout swiperefresh;
@@ -73,7 +74,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         fifthRec = view.findViewById(R.id.fifthRec);
         wallAdapter = new WallAdapter(wallList, activity);
 
-        fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
+        fifthRec.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
         getData();
         swiperefresh = view.findViewById(R.id.swiperefresh);
@@ -97,6 +98,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+
     void getData() {
         loadwall.setVisibility(View.VISIBLE);
         wallList.clear();
@@ -105,7 +107,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         likedArray.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
         final String check = prefs.getString("roll number", "17mi524");
-        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "/feed/1/" + '')
+        firebase_id = "12345";
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "/feed/1/" + firebase_id )
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -116,25 +119,17 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
-                                String name = json.getString("name");
-                                String roll = json.getString("rollno");
                                 String likes = json.getString("likes");
                                 String imgUrl = json.getString("image_url");
-                                String profile = json.getString("profile_pic");
-                                String image = json.getString("id");
-                                int inttt = json.getInt("liked");
-                                imageArray.add(image);
-                                likesArray.add(likes);
-                                likedArray.add(inttt > 0);
-                                wallList.add(new wall(name, roll, profile, imgUrl, likes, image, inttt > 0));
+                                int liked = json.getInt("liked");
+                                wallList.add(new wall(imgUrl, likes , liked));
                             }
                             wallAdapter.notifyDataSetChanged();
-                            set = 1;
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
                     @Override
                     public void onError(ANError error) {
                         // handle error
