@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -22,13 +24,15 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     IResult mResultCallback;
     IResult mResultCallbackAndroidNeworking;
+    TextView text;
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button=findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        text=findViewById(R.id.text);
+        text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new WallFragment(MainActivity.this);

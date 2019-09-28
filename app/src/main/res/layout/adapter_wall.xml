@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +12,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/source"
         android:clickable="false"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp"
@@ -19,39 +21,25 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+
+
             android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/top"
-                android:background="#FFA726"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="5dp"
+                android:background="#FFA500"
+                android:id="@+id/top"/>
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/image"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="16dp"
-                    android:scaleType="centerCrop"
-                    android:src="@color/black" />
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/psb"
-                    android:text=""
-                    android:textColor="@color/dark_grey"
-                    android:textSize="15sp" />
 
-            </LinearLayout>
 
             <ImageView
                 android:id="@+id/upload"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
                 android:layout_below="@id/top"
+                android:layout_width="match_parent"
+
+                android:layout_height="300dp"
+
                 android:scaleType="centerCrop"
                 android:src="#f3f3f3" />
 
@@ -79,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/line"
+
                 android:background="@drawable/yellow_orange">
 
                 <com.airbnb.lottie.LottieAnimationView

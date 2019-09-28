@@ -97,47 +97,50 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         Log.e("WallFragment", "onCreateView: ");
         return view;
     }
-
-
-    void getData() {
-        loadwall.setVisibility(View.VISIBLE);
-        wallList.clear();
-        imageArray.clear();
-        likedArray.clear();
-        likedArray.clear();
-        SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
-        final String check = prefs.getString("roll number", "17mi524");
-        firebase_id = "12345";
-        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "/feed/1/" + firebase_id )
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            loadwall.setVisibility(View.GONE);
-                            System.out.println(response);
-                            int users = response.length();
-                            for (int i = 0; i < users; i++) {
-                                JSONObject json = response.getJSONObject(i);
-                                String likes = json.getString("likes");
-                                String imgUrl = json.getString("image_url");
-                                int liked = json.getInt("liked");
-                                wallList.add(new wall(imgUrl, likes , liked));
-                            }
-                            wallAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                    }
-                });
-//        notifyDataSetChanged()
-        wallAdapter.notifyDataSetChanged();
+    void getData(){
+        wallList.add(new wall("http://13.235.43.83:8000/uploads/1569240326536.jpg","1",0));
     }
+
+
+//    void getData() {
+//        loadwall.setVisibility(View.VISIBLE);
+//        wallList.clear();
+//        imageArray.clear();
+//        likedArray.clear();
+//        likedArray.clear();
+//        SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
+//        final String check = prefs.getString("roll number", "17mi524");
+//        firebase_id = "12345";
+//        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "/feed/1/" + firebase_id )
+//                .build()
+//                .getAsJSONArray(new JSONArrayRequestListener() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                        try {
+//                            loadwall.setVisibility(View.GONE);
+//                            System.out.println(response);
+//                            int users = response.length();
+//                            for (int i = 0; i < users; i++) {
+//                                JSONObject json = response.getJSONObject(i);
+//                                String likes = json.getString("likes");
+//                                String imgUrl = json.getString("image_url");
+//                                int liked = json.getInt("liked");
+//                                wallList.add(new wall(imgUrl, likes , liked));
+//                            }
+//                            wallAdapter.notifyDataSetChanged();
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    @Override
+//                    public void onError(ANError error) {
+//                        // handle error
+//                    }
+//                });
+////        notifyDataSetChanged()
+//        wallAdapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onClick(View v) {
