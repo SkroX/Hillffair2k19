@@ -144,7 +144,6 @@ public class FaceSmash extends Fragment {
 
         final VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-
         mVolleyService.getJsonArrayDataVolley("GETJSONARRAYLIFESAVER", getString(R.string.baseUrl) + "/faceSmash");
 
 
@@ -338,19 +337,22 @@ public class FaceSmash extends Fragment {
 
                         try {
                             obj = jsonArray.getJSONObject(i);
-                            String url = obj.getString("url").replace("\\\\", "");
-                            Log.e("URLs", url);
-                            if (url.contains("https") || url.contains("http"))
-                                imageUrls.add(url);
-
                             String id = obj.getString("firebase_id");
-                            firebaseIds.add(id);
+                            if(!id.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                String url = obj.getString("url").replace("\\\\", "");
+                                Log.e("URLs", url);
+                                if (url.contains("https") || url.contains("http"))
+                                    imageUrls.add(url);
 
-                            String gender = obj.getString("gender");
-                            genders.add(gender);
 
-                            String rating = obj.getString("rating");
-                            ratings.add(rating);
+                                firebaseIds.add(id);
+
+                                String gender = obj.getString("gender");
+                                genders.add(gender);
+
+                                String rating = obj.getString("rating");
+                                ratings.add(rating);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
